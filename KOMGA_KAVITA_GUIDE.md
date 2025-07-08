@@ -32,13 +32,13 @@ The manga metadata tool now includes a built-in command to embed ComicInfo.xml d
 
 ```bash
 # For Elfen Lied chapters 1-9
-python main.py embed /path/to/Elfen-Lied 30933 --range "1-9"
+manga-tagger embed /path/to/Elfen-Lied 30933 --range "1-9"
 
 # With custom scan information
-python main.py embed /path/to/Elfen-Lied 30933 --range "1-9" --scan-info "Your Scanlation Group"
+manga-tagger embed /path/to/Elfen-Lied 30933 --range "1-9" --scan-info "Your Scanlation Group"
 
 # Dry run to see what would be processed
-python main.py embed /path/to/Elfen-Lied 30933 --range "1-9" --dry-run
+manga-tagger embed /path/to/Elfen-Lied 30933 --range "1-9" --dry-run
 ```
 
 **Option B: Manual process**
@@ -128,11 +128,11 @@ Elfen-Lied/
 Generate volume metadata instead:
 
 ```bash
-python main.py embed /path/to/Elfen-Lied 30933 --metadata-type volumes --pattern "Elfen Lied v{:02d}.cbz" --range "1-12"
+manga-tagger embed /path/to/Elfen-Lied 30933 --metadata-type volumes --pattern "Elfen Lied v{:02d}.cbz" --range "1-12"
 ```
 
 ## Next Steps
 
-1. Run the embed command: `python main.py embed /path/to/Elfen-Lied 30933 --range "1-9"`
+1. Run the embed command: `manga-tagger embed /path/to/Elfen-Lied 30933 --range "1-9"`
 2. Refresh your Komga/Kavita library
 3. Enjoy properly organized manga with rich metadata!

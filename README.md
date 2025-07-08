@@ -14,17 +14,29 @@ A Python tool for creating `ComicInfo.xml` files for manga using the AniList API
 
 ## Installation
 
+### Using pip (Recommended)
+
+Install directly from the repository:
+
+```bash
+pip install manga-tagger
+```
+
+Or install in development mode from source:
+
+```bash
+git clone <repository-url>
+cd manga-metadata
+pip install -e .
+```
+
+### Manual Installation
+
 1. Clone or download this repository
 2. Install dependencies:
 
 ```bash
 pip install requests lxml click python-dateutil
-```
-
-Or if you're using the project structure:
-
-```bash
-pip install -e .
 ```
 
 ## Usage
@@ -36,39 +48,39 @@ The tool provides a CLI with several commands:
 #### Search for manga
 
 ```bash
-python main.py search "Attack on Titan" --limit 5
+manga-tagger search "Attack on Titan" --limit 5
 ```
 
 #### Generate ComicInfo.xml for a specific manga
 
 ```bash
-python main.py generate 86 --volume 1 --scan-info "My Scanlation Group"
+manga-tagger generate 86 --volume 1 --scan-info "My Scanlation Group"
 ```
 
 #### Batch generate for multiple volumes
 
 ```bash
-python main.py batch "One Piece" --volumes "1-10" --output-dir "./output"
+manga-tagger batch "One Piece" --volumes "1-10" --output-dir "./output"
 ```
 
 #### Embed metadata directly into CBZ files
 
 ```bash
 # For chapter-based CBZ files (c001.cbz, c002.cbz, etc.)
-python main.py embed /path/to/cbz/folder 30933 --range "1-10" --scan-info "My Scanlation"
+manga-tagger embed /path/to/cbz/folder 30933 --range "1-10" --scan-info "My Scanlation"
 
 # For volume-based CBZ files
-python main.py embed /path/to/cbz/folder 30933 --metadata-type volumes --pattern "v{:02d}.cbz" --range "1-5"
+manga-tagger embed /path/to/cbz/folder 30933 --metadata-type volumes --pattern "v{:02d}.cbz" --range "1-5"
 
 # Dry run to see what would be processed
-python main.py embed /path/to/cbz/folder 30933 --range "1-3" --dry-run
+manga-tagger embed /path/to/cbz/folder 30933 --range "1-3" --dry-run
 ```
 
 ### Programmatic Usage
 
 ```python
-from src.anilist_client import AniListClient
-from src.comicinfo_generator import ComicInfoGenerator
+from manga_tagger.anilist_client import AniListClient
+from manga_tagger.comicinfo_generator import ComicInfoGenerator
 
 # Initialize clients
 client = AniListClient()
@@ -143,23 +155,23 @@ Generated ComicInfo.xml files follow the [ComicInfo v2.1 schema](https://anansi-
 
 ```bash
 # Search and find manga ID
-python main.py search "Death Note"
+manga-tagger search "Death Note"
 
 # Generate ComicInfo.xml
-python main.py generate 21 --volume 1
+manga-tagger generate 21 --volume 1
 ```
 
 ### Advanced Usage
 
 ```bash
 # Batch generate with custom output directory
-python main.py batch "Demon Slayer" --volumes "1,3,5-10" --output-dir "./manga/demon-slayer"
+manga-tagger main.py batch "Demon Slayer" --volumes "1,3,5-10" --output-dir "./manga/demon-slayer"
 
 # Include scan information
-python main.py generate 127230 --chapter "1" --scan-info "Scan Group Name"
+manga-tagger generate 127230 --chapter "1" --scan-info "Scan Group Name"
 
 # Embed metadata directly into existing CBZ files (Komga/Kavita ready)
-python main.py embed "./Elfen-Lied" 30933 --range "1-9" --scan-info "My Scanlation Group"
+manga-tagger embed "./Elfen-Lied" 30933 --range "1-9" --scan-info "My Scanlation Group"
 ```
 
 ### Example Output

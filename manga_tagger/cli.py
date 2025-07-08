@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 """
-Manga Metadata Tool
+Manga Tagger CLI
 
-A tool to create ComicInfo.xml files for manga using the AniList API.
+A command-line tool to create and embed ComicInfo.xml files for manga using the AniList API.
 """
 
 import click
 import zipfile
 from pathlib import Path
-from src.anilist_client import AniListClient
-from src.comicinfo_generator import ComicInfoGenerator
+from .anilist_client import AniListClient
+from .comicinfo_generator import ComicInfoGenerator
 
 
 @click.group()
 def cli():
-    """Manga Metadata Tool - Create ComicInfo.xml files using AniList API."""
+    """Manga Tagger - Create and embed ComicInfo.xml files using AniList API."""
     pass
 
 
@@ -313,7 +313,7 @@ def embed(cbz_dir: Path, manga_id: int, metadata_type: str, pattern: str, range_
 
 
 def main():
-    """Entry point for the application."""
+    """Entry point for the CLI application."""
     cli()
 
 

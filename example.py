@@ -4,9 +4,9 @@ Example script showing how to use the manga metadata tool.
 """
 
 from typing import Optional
-from src.anilist_client import AniListClient
-from src.comicinfo_generator import ComicInfoGenerator
-from src.models import MangaDetails
+from manga_tagger.anilist_client import AniListClient
+from manga_tagger.comicinfo_generator import ComicInfoGenerator
+from manga_tagger.models import MangaDetails
 
 
 def main():

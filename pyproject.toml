@@ -4,10 +4,16 @@ version = "0.1.0"
 description = "CLI tool to create and embed ComicInfo.xml metadata for manga using AniList API"
 readme = "README.md"
 requires-python = ">=3.13"
-authors = [
-    {name = "Manga Tagger Contributors"},
+authors = [{ name = "Manga Tagger Contributors" }]
+keywords = [
+    "manga",
+    "metadata",
+    "comicinfo",
+    "cbz",
+    "anilist",
+    "komga",
+    "kavita",
 ]
-keywords = ["manga", "metadata", "comicinfo", "cbz", "anilist", "komga", "kavita"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Environment :: Console",
@@ -38,3 +44,8 @@ Repository = "https://github.com/manga-tagger/manga-tagger"
 requires = ["hatchling >= 1.27"]
 build-backend = "hatchling.build"
 
+[[tool.uv.index]]
+name = "testpypi"
+url = "https://test.pypi.org/simple/"
+publish-url = "https://test.pypi.org/legacy/"
+explicit = true

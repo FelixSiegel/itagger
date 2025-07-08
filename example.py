@@ -42,7 +42,9 @@ def main():
             print(f"Genres: {', '.join(manga_details.genres or [])}")
 
             # Generate ComicInfo.xml for volume 1
-            comic_info = generator.generate_comic_info(manga=manga_details, volume=1, scan_info="Example Scanlation Group")
+            comic_info = generator.generate_comic_info(
+                manga=manga_details, volume=1, scan_info="Example Scanlation Group"
+            )
 
             # Save to file
             with open("example_ComicInfo.xml", "w", encoding="utf-8") as f:

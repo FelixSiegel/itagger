@@ -188,15 +188,20 @@ def _add_comicinfo_to_cbz(cbz_path: Path, comicinfo_content: str) -> bool:
 @cli.command()
 @click.argument('cbz_dir', type=click.Path(exists=True, path_type=Path))
 @click.argument('manga_id', type=int)
-@click.option('--metadata-type', '-t', type=click.Choice(['chapters', 'volumes']), default='chapters',
-              help='Type of metadata to generate (chapters or volumes)')
-@click.option('--pattern', '-p', type=str,
-              help='CBZ filename pattern (e.g., "c{:03d}.cbz" for c001.cbz, c002.cbz)')
-@click.option('--range', '-r', 'range_spec', type=str,
-              help='Range of chapters/volumes (e.g., "1-10" or "1,3,5-8")')
+@click.option(
+    '--metadata-type',
+    '-t',
+    type=click.Choice(['chapters', 'volumes']),
+    default='chapters',
+    help='Type of metadata to generate (chapters or volumes)',
+)
+@click.option('--pattern', '-p', type=str, help='CBZ filename pattern (e.g., "c{:03d}.cbz" for c001.cbz, c002.cbz)')
+@click.option('--range', '-r', 'range_spec', type=str, help='Range of chapters/volumes (e.g., "1-10" or "1,3,5-8")')
 @click.option('--scan-info', '-s', type=str, help='Scan information to add to metadata')
 @click.option('--dry-run', is_flag=True, help='Show what would be processed without making changes')
-def embed(cbz_dir: Path, manga_id: int, metadata_type: str, pattern: str, range_spec: str, scan_info: str, dry_run: bool):
+def embed(
+    cbz_dir: Path, manga_id: int, metadata_type: str, pattern: str, range_spec: str, scan_info: str, dry_run: bool
+):
     """Embed ComicInfo.xml metadata directly into CBZ files.
 
     CBZ_DIR: Directory containing CBZ files
@@ -243,7 +248,7 @@ def embed(cbz_dir: Path, manga_id: int, metadata_type: str, pattern: str, range_
             if metadata_type == 'chapters':
                 pattern = 'c{:03d}.cbz'  # c001.cbz, c002.cbz, etc.
             else:
-                pattern = 'v{:02d}.cbz'   # v01.cbz, v02.cbz, etc.
+                pattern = 'v{:02d}.cbz'  # v01.cbz, v02.cbz, etc.
 
         click.echo(f"Processing {metadata_type} with pattern: {pattern}")
         if dry_run:
@@ -273,17 +278,9 @@ def embed(cbz_dir: Path, manga_id: int, metadata_type: str, pattern: str, range_
 
             # Generate metadata
             if metadata_type == 'chapters':
-                comic_info = generator.generate_comic_info(
-                    manga=manga,
-                    chapter=str(number),
-                    scan_info=scan_info
-                )
+                comic_info = generator.generate_comic_info(manga=manga, chapter=str(number), scan_info=scan_info)
             else:
-                comic_info = generator.generate_comic_info(
-                    manga=manga,
-                    volume=int(number),
-                    scan_info=scan_info
-                )
+                comic_info = generator.generate_comic_info(manga=manga, volume=int(number), scan_info=scan_info)
 
             if dry_run:
                 click.echo(f"📄 Would process: {filename}")

@@ -1,10 +1,12 @@
 [project]
 name = "itagger"
 version = "0.1.0"
+authors = [{ name = "InfinityCoding", email = "infinitycoding@web.de" }]
 description = "CLI tool to create and embed ComicInfo.xml metadata for manga using AniList API"
 readme = "README.md"
+license = "GPL-3.0-or-later"
+license-files = ["LICEN[CS]E*"]
 requires-python = ">=3.13"
-authors = [{ name = "Manga Tagger Contributors" }]
 keywords = [
     "manga",
     "metadata",
@@ -18,7 +20,7 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Environment :: Console",
     "Intended Audience :: End Users/Desktop",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.13",
@@ -36,9 +38,9 @@ dependencies = [
 itagger = "itagger.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/itagger/itagger"
-Issues = "https://github.com/itagger/itagger/issues"
-Repository = "https://github.com/itagger/itagger"
+Homepage = "https://github.com/FelixSiegel/itagger"
+Issues = "https://github.com/FelixSiegel/itagger/issues"
+Repository = "https://github.com/FelixSiegel/itagger"
 
 [build-system]
 requires = ["hatchling >= 1.27"]

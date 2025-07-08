@@ -19,7 +19,7 @@ A Python tool for creating `ComicInfo.xml` files for manga using the AniList API
 Install directly from the repository:
 
 ```bash
-pip install manga-tagger
+pip install itagger
 ```
 
 Or install in development mode from source:
@@ -48,39 +48,39 @@ The tool provides a CLI with several commands:
 #### Search for manga
 
 ```bash
-manga-tagger search "Attack on Titan" --limit 5
+itagger search "Attack on Titan" --limit 5
 ```
 
 #### Generate ComicInfo.xml for a specific manga
 
 ```bash
-manga-tagger generate 86 --volume 1 --scan-info "My Scanlation Group"
+itagger generate 86 --volume 1 --scan-info "My Scanlation Group"
 ```
 
 #### Batch generate for multiple volumes
 
 ```bash
-manga-tagger batch "One Piece" --volumes "1-10" --output-dir "./output"
+itagger batch "One Piece" --volumes "1-10" --output-dir "./output"
 ```
 
 #### Embed metadata directly into CBZ files
 
 ```bash
 # For chapter-based CBZ files (c001.cbz, c002.cbz, etc.)
-manga-tagger embed /path/to/cbz/folder 30933 --range "1-10" --scan-info "My Scanlation"
+itagger embed /path/to/cbz/folder 30933 --range "1-10" --scan-info "My Scanlation"
 
 # For volume-based CBZ files
-manga-tagger embed /path/to/cbz/folder 30933 --metadata-type volumes --pattern "v{:02d}.cbz" --range "1-5"
+itagger embed /path/to/cbz/folder 30933 --metadata-type volumes --pattern "v{:02d}.cbz" --range "1-5"
 
 # Dry run to see what would be processed
-manga-tagger embed /path/to/cbz/folder 30933 --range "1-3" --dry-run
+itagger embed /path/to/cbz/folder 30933 --range "1-3" --dry-run
 ```
 
 ### Programmatic Usage
 
 ```python
-from manga_tagger.anilist_client import AniListClient
-from manga_tagger.comicinfo_generator import ComicInfoGenerator
+from itagger.anilist_client import AniListClient
+from itagger.comicinfo_generator import ComicInfoGenerator
 
 # Initialize clients
 client = AniListClient()
@@ -155,23 +155,23 @@ Generated ComicInfo.xml files follow the [ComicInfo v2.1 schema](https://anansi-
 
 ```bash
 # Search and find manga ID
-manga-tagger search "Death Note"
+itagger search "Death Note"
 
 # Generate ComicInfo.xml
-manga-tagger generate 21 --volume 1
+itagger generate 21 --volume 1
 ```
 
 ### Advanced Usage
 
 ```bash
 # Batch generate with custom output directory
-manga-tagger main.py batch "Demon Slayer" --volumes "1,3,5-10" --output-dir "./manga/demon-slayer"
+itagger main.py batch "Demon Slayer" --volumes "1,3,5-10" --output-dir "./manga/demon-slayer"
 
 # Include scan information
-manga-tagger generate 127230 --chapter "1" --scan-info "Scan Group Name"
+itagger generate 127230 --chapter "1" --scan-info "Scan Group Name"
 
 # Embed metadata directly into existing CBZ files (Komga/Kavita ready)
-manga-tagger embed "./Elfen-Lied" 30933 --range "1-9" --scan-info "My Scanlation Group"
+itagger embed "./Elfen-Lied" 30933 --range "1-9" --scan-info "My Scanlation Group"
 ```
 
 ### Example Output

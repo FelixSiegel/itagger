@@ -1,5 +1,5 @@
 [project]
-name = "manga-tagger"
+name = "itagger"
 version = "0.1.0"
 description = "CLI tool to create and embed ComicInfo.xml metadata for manga using AniList API"
 readme = "README.md"
@@ -33,12 +33,12 @@ dependencies = [
 ]
 
 [project.scripts]
-manga-tagger = "manga_tagger.cli:main"
+itagger = "itagger.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/manga-tagger/manga-tagger"
-Issues = "https://github.com/manga-tagger/manga-tagger/issues"
-Repository = "https://github.com/manga-tagger/manga-tagger"
+Homepage = "https://github.com/itagger/itagger"
+Issues = "https://github.com/itagger/itagger/issues"
+Repository = "https://github.com/itagger/itagger"
 
 [build-system]
 requires = ["hatchling >= 1.27"]

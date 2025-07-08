@@ -14,7 +14,7 @@ from .comicinfo_generator import ComicInfoGenerator
 
 @click.group()
 def cli():
-    """Manga Tagger - Create and embed ComicInfo.xml files using AniList API."""
+    """iTagger - Create and embed ComicInfo.xml files using AniList API."""
     pass
 
 

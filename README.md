@@ -1,4 +1,14 @@
-# Manga Metadata Tool
+<div align="center" style="margin-top: 20px">
+  <a href="https://github.com/FelixSiegel/itagger">
+        <img src="assets/logos/logo.svg" alt="Logo" width="120" height="120" />
+    </a>
+    <h1 style="margin-top: 0">iTagger</h1>
+</div>
+
+[![Language: Python](https://img.shields.io/badge/Language-Python-green)](https://www.python.org/)
+[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
 
 A Python tool for creating `ComicInfo.xml` files for manga using the AniList API. This tool follows the ComicInfo schema specifications from [The Anansi Project](https://anansi-project.github.io/docs/comicinfo/documentation).
 
@@ -14,9 +24,17 @@ A Python tool for creating `ComicInfo.xml` files for manga using the AniList API
 
 ## Installation
 
-### Using pip (Recommended)
+### Using uv (Recommended)
 
-Install directly from the repository:
+Install the tool using [uv](https://docs.astral.sh/uv/):
+
+```bash
+uv tool install itagger
+```
+
+### Using pip
+
+Install from PyPI using pip:
 
 ```bash
 pip install itagger
@@ -25,8 +43,8 @@ pip install itagger
 Or install in development mode from source:
 
 ```bash
-git clone <repository-url>
-cd manga-metadata
+git clone https://github.com/FelixSiegel/itagger
+cd itagger
 pip install -e .
 ```
 
@@ -37,6 +55,12 @@ pip install -e .
 
 ```bash
 pip install requests lxml click python-dateutil
+```
+
+or using uv, just run:
+
+```bash
+uv sync
 ```
 
 ## Usage
@@ -51,7 +75,7 @@ The tool provides a CLI with several commands:
 itagger search "Attack on Titan" --limit 5
 ```
 
-#### Generate ComicInfo.xml for a specific manga
+#### Generate ComicInfo.xml for a specific manga (requires AniList ID)
 
 ```bash
 itagger generate 86 --volume 1 --scan-info "My Scanlation Group"
@@ -66,6 +90,9 @@ itagger batch "One Piece" --volumes "1-10" --output-dir "./output"
 #### Embed metadata directly into CBZ files
 
 ```bash
+# Embed metadata (from Manga by ID) into existing CBZ files for Komga/Kavita
+itagger embed /path/to/cbz/folder 30933
+
 # For chapter-based CBZ files (c001.cbz, c002.cbz, etc.)
 itagger embed /path/to/cbz/folder 30933 --range "1-10" --scan-info "My Scanlation"
 
@@ -75,6 +102,8 @@ itagger embed /path/to/cbz/folder 30933 --metadata-type volumes --pattern "v{:02
 # Dry run to see what would be processed
 itagger embed /path/to/cbz/folder 30933 --range "1-3" --dry-run
 ```
+
+Also read the [KOMGA_KAVITA_GUIDE.md](KOMGA_KAVITA_GUIDE.md) for more details on embedding metadata into CBZ files.
 
 ### Programmatic Usage
 
@@ -226,7 +255,7 @@ The tool includes robust error handling for:
 
 ## License
 
-This project is open source. Feel free to use, modify, and distribute according to your needs.
+This project is open source and available under the [GNU General Public License v3.0](LICENSE).
 
 ## Contributing
 
@@ -236,4 +265,5 @@ Contributions are welcome! Please feel free to submit issues, feature requests, 
 
 - [AniList](https://anilist.co/) for providing the comprehensive manga database API
 - [The Anansi Project](https://anansi-project.github.io/) for ComicInfo schema documentation
+- [uv](https://docs.astral.sh/uv/) for making the whole build and installation process easier
 - The manga and digital comics community for standardization efforts

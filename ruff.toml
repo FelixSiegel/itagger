@@ -1,0 +1,7 @@
+line-length = 120
+indent-width = 4
+
+[format]
+indent-style = "space"
+quote-style = "preserve"
+skip-magic-trailing-comma = true

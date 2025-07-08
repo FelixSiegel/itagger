@@ -1,0 +1,12 @@
+[project]
+name = "manga-metadata"
+version = "0.1.0"
+description = "Tool to create ComicInfo.xml files for manga using AniList API"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "requests>=2.31.0",
+    "lxml>=4.9.0",
+    "click>=8.1.0",
+    "python-dateutil>=2.8.0",
+]

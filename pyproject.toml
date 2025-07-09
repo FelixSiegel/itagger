@@ -1,6 +1,6 @@
 [project]
 name = "itagger"
-version = "0.1.0"
+version = "0.1.1"
 authors = [{ name = "InfinityCoding", email = "infinitycoding@web.de" }]
 description = "CLI tool to create and embed ComicInfo.xml metadata for manga using AniList API"
 readme = "README.md"

@@ -69,38 +69,87 @@ uv sync
 
 The tool provides a CLI with several commands:
 
+```text
+  batch     Generate ComicInfo.xml files for multiple volumes of a manga...
+  embed     Embed ComicInfo.xml metadata directly into CBZ files.
+  generate  Generate ComicInfo.xml for a specific manga.
+  search    Search for manga on AniList.
+```
+
+You can get help for each command using the `--help` flag.
+
 #### Search for manga
 
-```bash
-itagger search "Attack on Titan" --limit 5
+Syntax:
+
+```sh
+itagger search [OPTIONS] QUERY
 ```
+
+Example:
+
+```bash
+itagger search --limit 5 "Attack on Titan"
+```
+
+The command returns a list of matching manga titles along with their AniList IDs and other basic information.
 
 #### Generate ComicInfo.xml for a specific manga (requires AniList ID)
 
-```bash
-itagger generate 86 --volume 1 --scan-info "My Scanlation Group"
+Syntax:
+
+```sh
+itagger generate [OPTIONS] MANGA_ID
 ```
+
+Example:
+
+```bash
+itagger generate --volume 1 --scan-info "My Scanlation Group" 105778
+```
+
+This command generates a `ComicInfo.xml` file for volume 1 of the manga with AniList ID `105778` (Chainsaw Man) and includes the specified [scanlation group](https://anansi-project.github.io/docs/comicinfo/documentation#scaninformation) in the metadata.
+
+You can find the AniList ID using the `search` command or by visiting the manga's page on AniList (the ID is in the URL).
 
 #### Batch generate for multiple volumes
 
-```bash
-itagger batch "One Piece" --volumes "1-10" --output-dir "./output"
+Syntax:
+
+```sh
+itagger batch [OPTIONS] QUERY
 ```
 
+Example:
+
+```bash
+itagger batch --volumes "1-10" --output-dir "output/" "One Piece"
+```
+
+This command searches for "One Piece" on AniList, retrieves its AniList ID, and generates `ComicInfo.xml` files for volumes 1 to 10, saving them in the specified output directory.
+
 #### Embed metadata directly into CBZ files
+
+Syntax:
+
+```sh
+itagger embed [OPTIONS] CBZ_DIR MANGA_ID
+```
+
+Examples:
 
 ```bash
 # Embed metadata (from Manga by ID) into existing CBZ files for Komga/Kavita
 itagger embed /path/to/cbz/folder 30933
 
-# For chapter-based CBZ files (c001.cbz, c002.cbz, etc.)
-itagger embed /path/to/cbz/folder 30933 --range "1-10" --scan-info "My Scanlation"
+# For specific range of volumes/chapters
+itagger embed --range "1-10" /path/to/cbz/folder 30933
 
 # For volume-based CBZ files
-itagger embed /path/to/cbz/folder 30933 --metadata-type volumes --pattern "v{:02d}.cbz" --range "1-5"
+itagger embed --metadata-type volumes --pattern "v{:02d}.cbz" /path/to/cbz/folder 30933
 
 # Dry run to see what would be processed
-itagger embed /path/to/cbz/folder 30933 --range "1-3" --dry-run
+itagger embed --dry-run /path/to/cbz/folder 30933
 ```
 
 Also read the [KOMGA_KAVITA_GUIDE.md](KOMGA_KAVITA_GUIDE.md) for more details on embedding metadata into CBZ files.
@@ -159,50 +208,6 @@ The tool maps AniList data to ComicInfo.xml fields according to the schema:
 | `AgeRating` | Tags + adult flag | Age appropriateness rating |
 | `CommunityRating` | Average score | Rating converted to 0-5 scale |
 
-## AniList API Integration
-
-The tool uses AniList's GraphQL API to fetch comprehensive manga metadata:
-
-- **Search**: Finds manga by title with popularity and score sorting
-- **Details**: Retrieves full metadata including staff, characters, tags, and more
-- **No authentication required**: Uses public API endpoints
-- **Rate limiting**: Respectful API usage with proper error handling
-
-## Schema Compliance
-
-Generated ComicInfo.xml files follow the [ComicInfo v2.1 schema](https://anansi-project.github.io/docs/comicinfo/schemas/v2.1) specifications:
-
-- Proper XML structure and encoding
-- Correct data types for numeric fields
-- Enumerated values for specific fields (Manga, AgeRating, etc.)
-- Optional field handling
-- HTML entity escaping
-
-## Examples
-
-### Basic Usage
-
-```bash
-# Search and find manga ID
-itagger search "Death Note"
-
-# Generate ComicInfo.xml
-itagger generate 21 --volume 1
-```
-
-### Advanced Usage
-
-```bash
-# Batch generate with custom output directory
-itagger main.py batch "Demon Slayer" --volumes "1,3,5-10" --output-dir "./manga/demon-slayer"
-
-# Include scan information
-itagger generate 127230 --chapter "1" --scan-info "Scan Group Name"
-
-# Embed metadata directly into existing CBZ files (Komga/Kavita ready)
-itagger embed "./Elfen-Lied" 30933 --range "1-9" --scan-info "My Scanlation Group"
-```
-
 ### Example Output
 
 ```xml
@@ -236,15 +241,24 @@ itagger embed "./Elfen-Lied" 30933 --range "1-9" --scan-info "My Scanlation Grou
 </ComicInfo>
 ```
 
-## Error Handling
+## AniList API Integration
 
-The tool includes robust error handling for:
+The tool uses AniList's GraphQL API to fetch comprehensive manga metadata:
 
-- Network connectivity issues
-- Invalid manga IDs
-- Missing metadata fields
-- File I/O operations
-- GraphQL API errors
+- **Search**: Finds manga by title with popularity and score sorting
+- **Details**: Retrieves full metadata including staff, characters, tags, and more
+- **No authentication required**: Uses public API endpoints
+- **Rate limiting**: Respectful API usage with proper error handling
+
+## Schema Compliance
+
+Generated ComicInfo.xml files follow the [ComicInfo v2.1 schema](https://anansi-project.github.io/docs/comicinfo/schemas/v2.1) specifications:
+
+- Proper XML structure and encoding
+- Correct data types for numeric fields
+- Enumerated values for specific fields (Manga, AgeRating, etc.)
+- Optional field handling
+- HTML entity escaping
 
 ## Dependencies
 

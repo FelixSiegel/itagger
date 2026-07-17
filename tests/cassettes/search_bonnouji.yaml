@@ -1,0 +1,87 @@
+interactions:
+- request:
+    body: '{"query": "\n        query ($search: String, $page: Int, $perPage: Int)
+      {\n            Page(page: $page, perPage: $perPage) {\n                media(search:
+      $search, type: MANGA, sort: [POPULARITY_DESC, SCORE_DESC]) {\n                    id\n                    title
+      {\n                        romaji\n                        english\n                        native\n                    }\n                    status\n                    startDate
+      {\n                        year\n                        month\n                        day\n                    }\n                    endDate
+      {\n                        year\n                        month\n                        day\n                    }\n                    chapters\n                    volumes\n                    coverImage
+      {\n                        large\n                    }\n                    description(asHtml:
+      false)\n                }\n            }\n        }\n        ", "variables":
+      {"search": "Bonnouji", "page": 1, "perPage": 10}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1023'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/150.0.0.0 Safari/537.36
+    method: POST
+    uri: https://graphql.anilist.co/
+  response:
+    body:
+      string: '{"data":{"Page":{"media":[{"id":58226,"title":{"romaji":"Bonnouji","english":null,"native":"\u7169\u60a9\u5bfa"},"status":"FINISHED","startDate":{"year":2008,"month":4,"day":5},"endDate":{"year":2012,"month":10,"day":5},"chapters":36,"volumes":3,"coverImage":{"large":"https:\/\/s4.anilist.co\/file\/anilistcdn\/media\/manga\/cover\/medium\/nx58226-RJMupEnHIYXs.jpg"},"description":"Fate
+        brings two people who live in the same condo together on a typical afternoon.
+        Ozawa (26) has just broken up with her boyfriend of five years and was in
+        the process of trying to rebuild her life when she meets Oyamada who lives
+        a couple floors below her. He is somewhat of a loner although he does have
+        a few friends and his room is cluttered with all the random stuff that his
+        impulse shopper brother sends him. Ozawa takes an interest with all the things
+        in his room and the two start a friendship that slowly turns into something
+        more.<br><br>\n(Source: MangaHelpers)"}]}}}'
+    headers:
+      Access-Control-Allow-Headers:
+      - Authorization,Accept,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Content-Length,
+        Content-Range
+      CF-RAY:
+      - a1cbe777083c5c2a-TXL
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 17 Jul 2026 20:12:54 GMT
+      Nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Report-To:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=d8GfQOVqGcOiIT4J5FVfeYvsKWUub4PJp3q4%2BOZzo%2Fih7xeZgZHM%2Fs%2FMqJ%2B00Yda2dwesq2T3D4ERfcv21JL3OSIc%2FvdXwwPEp0A8JviLRGWuUxhQYLxJMZrIremi9q3joQiMA%3D%3D"}]}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - laravel_session=z2jtPLzImjODk2QuSW8BRSEEndlFLn2IKrd2rejh; expires=Sat, 18-Jul-2026
+        08:12:54 GMT; Max-Age=43200; path=/; httponly
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-RateLimit-Limit:
+      - '30'
+      X-RateLimit-Remaining:
+      - '29'
+      X-XSS-Protection:
+      - 1; mode=block
+      cf-cache-status:
+      - DYNAMIC
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -11,14 +11,32 @@ class AniListClient:
     def __init__(self):
         self.base_url = "https://graphql.anilist.co"
         self.session = requests.Session()
-        self.session.headers.update({'Content-Type': 'application/json', 'Accept': 'application/json'})
+        self.session.headers.update({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36'
+        })
 
     def _make_request(self, query: str, variables: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Make a GraphQL request to AniList API."""
         payload = {'query': query, 'variables': variables or {}}
 
         response = self.session.post(self.base_url, json=payload)
-        response.raise_for_status()
+
+        try:
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            if response.status_code == 403:
+                raise Exception(
+                    "403 Forbidden: AniList API blocked the request. This can be caused by Cloudflare anti-bot protection "
+                    "or an API outage. Check the AniList Discord (https://discord.gg/anilist) for status updates."
+                ) from e
+            elif response.status_code == 429:
+                raise Exception(
+                    "429 Too Many Requests: You are being rate-limited by the AniList API. "
+                    "Please wait a moment before trying again."
+                ) from e
+            raise
 
         data = response.json()
         if 'errors' in data:

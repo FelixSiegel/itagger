@@ -2,7 +2,19 @@ import vcr
 
 from itagger.anilist_client import AniListClient
 
-my_vcr = vcr.VCR(cassette_library_dir='tests/cassettes', record_mode='once', match_on=['uri', 'method', 'body'])
+
+def filter_bad_responses(response):
+    if response['status']['code'] >= 400:
+        return None  # Tells VCR to discard this response
+    return response
+
+
+my_vcr = vcr.VCR(
+    cassette_library_dir='tests/cassettes',
+    record_mode='once',
+    match_on=['uri', 'method', 'body'],
+    before_record_response=filter_bad_responses,
+)
 
 
 @my_vcr.use_cassette('search_bonnouji.yaml')

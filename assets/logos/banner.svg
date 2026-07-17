@@ -53,11 +53,9 @@
     <!-- Metadata tag (positioned like in the icon) -->
     <g transform="translate(35, 20)">
       <!-- Tag shape -->
-      <path d="M0,8 L8,0 L28,0 L28,16 L8,24 L0,16 Z" fill="url(#tagGradient)" stroke="#1F7A32" stroke-width="1.5" filter="url(#shadow)"/>
-      <!-- Tag hole -->
-      <circle cx="20" cy="8" r="2.5" fill="#FFFFFF"/>
+      <path d="M0,8 L8,0 L28,0 L28,16 L8,16 Z" fill="url(#tagGradient)" stroke="#1F7A32" stroke-width="1.5" filter="url(#shadow)"/>
       <!-- Tag icon/symbol -->
-      <text x="10" y="13" font-family="monospace" font-size="8" font-weight="bold" fill="#FFFFFF">&lt;/&gt;</text>
+      <text x="16" y="11" font-family="monospace" font-size="8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">&lt;/&gt;</text>
     </g>
 
     <!-- Letter "i" for iTagger (positioned like in the icon) -->

@@ -50,6 +50,7 @@ build-backend = "hatchling.build"
 dev = [
     "pytest>=8.0.0",
     "pytest-mock>=3.14.0",
+    "types-lxml>=2026.2.16",
     "vcrpy>=8.3.0",
 ]
 

@@ -1,0 +1,109 @@
+interactions:
+- request:
+    body: '{"query": "\n        query ($id: Int) {\n            Media(id: $id, type:
+      MANGA) {\n                id\n                title {\n                    romaji\n                    english\n                    native\n                }\n                description(asHtml:
+      false)\n                status\n                startDate {\n                    year\n                    month\n                    day\n                }\n                endDate
+      {\n                    year\n                    month\n                    day\n                }\n                chapters\n                volumes\n                coverImage
+      {\n                    large\n                }\n                bannerImage\n                genres\n                tags
+      {\n                    name\n                    description\n                    category\n                    rank\n                    isGeneralSpoiler\n                    isAdult\n                }\n                staff
+      {\n                    edges {\n                        node {\n                            id\n                            name
+      {\n                                full\n                                native\n                            }\n                        }\n                        role\n                    }\n                }\n                characters
+      {\n                    edges {\n                        node {\n                            id\n                            name
+      {\n                                full\n                                native\n                            }\n                        }\n                        role\n                    }\n                }\n                studios
+      {\n                    edges {\n                        node {\n                            id\n                            name\n                            isAnimationStudio\n                        }\n                    }\n                }\n                countryOfOrigin\n                source\n                format\n                isAdult\n                averageScore\n                meanScore\n                popularity\n                favourites\n                hashtag\n                siteUrl\n            }\n        }\n        ",
+      "variables": {"id": 58226}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2288'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/150.0.0.0 Safari/537.36
+    method: POST
+    uri: https://graphql.anilist.co/
+  response:
+    body:
+      string: '{"data":{"Media":{"id":58226,"title":{"romaji":"Bonnouji","english":null,"native":"\u7169\u60a9\u5bfa"},"description":"Fate
+        brings two people who live in the same condo together on a typical afternoon.
+        Ozawa (26) has just broken up with her boyfriend of five years and was in
+        the process of trying to rebuild her life when she meets Oyamada who lives
+        a couple floors below her. He is somewhat of a loner although he does have
+        a few friends and his room is cluttered with all the random stuff that his
+        impulse shopper brother sends him. Ozawa takes an interest with all the things
+        in his room and the two start a friendship that slowly turns into something
+        more.<br><br>\n(Source: MangaHelpers)","status":"FINISHED","startDate":{"year":2008,"month":4,"day":5},"endDate":{"year":2012,"month":10,"day":5},"chapters":36,"volumes":3,"coverImage":{"large":"https:\/\/s4.anilist.co\/file\/anilistcdn\/media\/manga\/cover\/medium\/nx58226-RJMupEnHIYXs.jpg"},"bannerImage":"https:\/\/s4.anilist.co\/file\/anilistcdn\/media\/manga\/banner\/58226-CzKzDyTvyE86.jpg","genres":["Comedy","Romance","Slice
+        of Life"],"tags":[{"name":"Seinen","description":"Target demographic is adult
+        males.","category":"Demographic","rank":96,"isGeneralSpoiler":false,"isAdult":false},{"name":"Primarily
+        Adult Cast","description":"Main cast is mostly composed of characters above
+        a high school age.","category":"Cast-Main Cast","rank":88,"isGeneralSpoiler":false,"isAdult":false},{"name":"Office
+        Lady","description":"Prominently features a female office worker or OL.","category":"Cast-Traits","rank":80,"isGeneralSpoiler":false,"isAdult":false},{"name":"Heterosexual","description":"Prominently
+        features a romance between a man and a woman, not inherently sexual.","category":"Theme-Romance","rank":80,"isGeneralSpoiler":false,"isAdult":false},{"name":"Iyashikei","description":"Primary
+        aim is to heal the audience through serene depictions of characters'' daily
+        lives.","category":"Theme-Slice of Life","rank":73,"isGeneralSpoiler":false,"isAdult":false},{"name":"Work","description":"Centers
+        around the activities of a certain occupation.","category":"Setting-Scene","rank":57,"isGeneralSpoiler":false,"isAdult":false},{"name":"Time
+        Skip","description":"Features a gap in time used to advance the story.","category":"Setting-Time","rank":53,"isGeneralSpoiler":true,"isAdult":false},{"name":"Mahjong","description":"Centered
+        around the game of mahjong.","category":"Theme-Game-Card & Board Game","rank":40,"isGeneralSpoiler":false,"isAdult":false},{"name":"Cohabitation","description":"Features
+        two or more people who live in the same household and develop a romantic or
+        sexual relationship.","category":"Theme-Romance","rank":40,"isGeneralSpoiler":false,"isAdult":false},{"name":"Nudity","description":"Features
+        a character wearing no clothing or exposing intimate body parts.","category":"Cast-Traits","rank":33,"isGeneralSpoiler":false,"isAdult":false}],"staff":{"edges":[{"node":{"id":98478,"name":{"full":"Aki
+        Eda","native":"\u79cb\u2605\u679d"}},"role":"Story & Art"}]},"characters":{"edges":[{"node":{"id":77923,"name":{"full":"Michiyo
+        Ozawa","native":"\u5c0f\u6ca2\u7f8e\u5343"}},"role":"MAIN"},{"node":{"id":77925,"name":{"full":"Zenji
+        Oyamada","native":"\u5c0f\u5c71\u7530 \u5584\u723e"}},"role":"MAIN"},{"node":{"id":298286,"name":{"full":"Kyouko
+        Watanabe","native":"\u6e21\u90e8"}},"role":"SUPPORTING"},{"node":{"id":298287,"name":{"full":"Hiroki
+        Shimamoto","native":"\u5cf6\u672c\u30d2\u30ed\u30ad"}},"role":"SUPPORTING"}]},"studios":{"edges":[]},"countryOfOrigin":"JP","source":"ORIGINAL","format":"MANGA","isAdult":false,"averageScore":75,"meanScore":76,"popularity":14739,"favourites":392,"hashtag":null,"siteUrl":"https:\/\/anilist.co\/manga\/58226"}}}'
+    headers:
+      Access-Control-Allow-Headers:
+      - Authorization,Accept,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Content-Length,
+        Content-Range
+      CF-RAY:
+      - a1cbe7784f6ae511-TXL
+      Cache-Control:
+      - no-cache, private
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 17 Jul 2026 20:12:54 GMT
+      Nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Report-To:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=gqDLmof2fVkovT6jYt%2BFPc0mEQNSS63iF5JiM%2FmIDrw5JsxEqnLYE7Uv8zBkQ%2ByPmNgzhzDejtAqYLWDfgF4Bfi80ZB7ImRz%2Ff2v%2Bn9u7f6OWl37us6Bc4jtsTBbhrCcme3V%2FA%3D%3D"}]}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - laravel_session=06NZ8u71wimisZsKFk41GLpG7DyVFtJVI9qAM2lg; expires=Sat, 18-Jul-2026
+        08:12:54 GMT; Max-Age=43200; path=/; httponly
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-RateLimit-Limit:
+      - '30'
+      X-RateLimit-Remaining:
+      - '28'
+      X-XSS-Protection:
+      - 1; mode=block
+      cf-cache-status:
+      - DYNAMIC
+    status:
+      code: 200
+      message: OK
+version: 1

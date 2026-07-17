@@ -46,6 +46,13 @@ Repository = "https://github.com/FelixSiegel/itagger"
 requires = ["hatchling >= 1.27"]
 build-backend = "hatchling.build"
 
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-mock>=3.14.0",
+    "vcrpy>=8.3.0",
+]
+
 [[tool.uv.index]]
 name = "testpypi"
 url = "https://test.pypi.org/simple/"

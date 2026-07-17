@@ -5,7 +5,7 @@
     <h1 style="margin-top: 0">iTagger</h1>
 </div>
 
-[![Language: Python](https://img.shields.io/badge/Language-Python-green)](https://www.python.org/)
+[![PyPI](https://img.shields.io/pypi/v/itagger.svg)](https://pypi.org/project/itagger/)
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![ty](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ty/main/assets/badge/v0.json)](https://github.com/astral-sh/ty)
@@ -187,26 +187,26 @@ with open("ComicInfo.xml", "w", encoding="utf-8") as f:
 
 The tool maps AniList data to ComicInfo.xml fields according to the schema:
 
-| ComicInfo Field | Source | Description |
-|----------------|--------|-------------|
-| `Title` | Manga title + volume/chapter | Full title including volume/chapter info |
-| `Series` | Primary title | Series name (English preferred, fallback to Romaji) |
-| `Number` | Volume/Chapter | Volume or chapter number |
-| `Count` | Volume count | Total volumes in series |
-| `Volume` | Volume number | Specific volume number |
-| `Summary` | Description | Cleaned description without HTML |
-| `Year/Month/Day` | Start date | Publication start date |
-| `Writer` | Staff with "Story" role | Authors/writers |
-| `Penciller` | Staff with "Art" role | Artists |
-| `Publisher` | Studios | Publishing studios |
-| `Genre` | Genres | Comma-separated genres |
-| `Tags` | Tags (non-spoiler) | Comma-separated tags |
-| `Web` | Site URL | AniList page URL |
-| `LanguageISO` | Country of origin | Language code (ja, ko, zh, etc.) |
-| `Manga` | Country + format | Reading direction (YesAndRightToLeft for JP) |
-| `Characters` | Main characters | Main character names |
-| `AgeRating` | Tags + adult flag | Age appropriateness rating |
-| `CommunityRating` | Average score | Rating converted to 0-5 scale |
+| ComicInfo Field   | Source                       | Description                                         |
+| ----------------- | ---------------------------- | --------------------------------------------------- |
+| `Title`           | Manga title + volume/chapter | Full title including volume/chapter info            |
+| `Series`          | Primary title                | Series name (English preferred, fallback to Romaji) |
+| `Number`          | Volume/Chapter               | Volume or chapter number                            |
+| `Count`           | Volume count                 | Total volumes in series                             |
+| `Volume`          | Volume number                | Specific volume number                              |
+| `Summary`         | Description                  | Cleaned description without HTML                    |
+| `Year/Month/Day`  | Start date                   | Publication start date                              |
+| `Writer`          | Staff with "Story" role      | Authors/writers                                     |
+| `Penciller`       | Staff with "Art" role        | Artists                                             |
+| `Publisher`       | Studios                      | Publishing studios                                  |
+| `Genre`           | Genres                       | Comma-separated genres                              |
+| `Tags`            | Tags (non-spoiler)           | Comma-separated tags                                |
+| `Web`             | Site URL                     | AniList page URL                                    |
+| `LanguageISO`     | Country of origin            | Language code (ja, ko, zh, etc.)                    |
+| `Manga`           | Country + format             | Reading direction (YesAndRightToLeft for JP)        |
+| `Characters`      | Main characters              | Main character names                                |
+| `AgeRating`       | Tags + adult flag            | Age appropriateness rating                          |
+| `CommunityRating` | Average score                | Rating converted to 0-5 scale                       |
 
 ### Example Output
 

@@ -5,9 +5,11 @@ Manga Tagger CLI
 A command-line tool to create and embed ComicInfo.xml files for manga using the AniList API.
 """
 
-import click
 import zipfile
 from pathlib import Path
+
+import click
+
 from .anilist_client import AniListClient
 from .comicinfo_generator import ComicInfoGenerator
 
@@ -61,7 +63,8 @@ def search(query: str, limit: int):
 @click.option('--volume', '-v', type=int, help='Volume number')
 @click.option('--chapter', '-c', type=str, help='Chapter number')
 @click.option('--scan-info', '-s', type=str, help='Scan information (e.g., scanlator name)')
-def generate(manga_id: int, output: str, volume: int, chapter: str, scan_info: str):
+@click.option('--volume-as-number', is_flag=True, help='Map volume number to the Number tag (legacy behavior)')
+def generate(manga_id: int, output: str, volume: int, chapter: str, scan_info: str, volume_as_number: bool):
     """Generate ComicInfo.xml for a specific manga."""
     client = AniListClient()
     generator = ComicInfoGenerator()
@@ -78,7 +81,9 @@ def generate(manga_id: int, output: str, volume: int, chapter: str, scan_info: s
         click.echo(f"Found: {manga.title_romaji}")
 
         # Generate ComicInfo.xml
-        comic_info = generator.generate_comic_info(manga=manga, volume=volume, chapter=chapter, scan_info=scan_info)
+        comic_info = generator.generate_comic_info(
+            manga=manga, volume=volume, chapter=chapter, scan_info=scan_info, volume_as_number=volume_as_number
+        )
 
         # Determine output path
         if not output:
@@ -101,7 +106,8 @@ def generate(manga_id: int, output: str, volume: int, chapter: str, scan_info: s
 @click.argument('query', type=str)
 @click.option('--output-dir', '-d', type=click.Path(), default='./output', help='Output directory')
 @click.option('--volumes', type=str, help='Volume range (e.g., 1-5 or 1,3,5)')
-def batch(query: str, output_dir: str, volumes: str):
+@click.option('--volume-as-number', is_flag=True, help='Map volume number to the Number tag (legacy behavior)')
+def batch(query: str, output_dir: str, volumes: str, volume_as_number: bool):
     """Generate ComicInfo.xml files for multiple volumes of a manga series."""
     client = AniListClient()
     generator = ComicInfoGenerator()
@@ -140,7 +146,7 @@ def batch(query: str, output_dir: str, volumes: str):
 
         # Generate ComicInfo.xml for each volume
         for volume in volume_list:
-            comic_info = generator.generate_comic_info(manga=manga, volume=volume)
+            comic_info = generator.generate_comic_info(manga=manga, volume=volume, volume_as_number=volume_as_number)
 
             filename = f"ComicInfo_Vol{volume:02d}.xml"
             file_path = output_path / filename
@@ -198,9 +204,17 @@ def _add_comicinfo_to_cbz(cbz_path: Path, comicinfo_content: str) -> bool:
 @click.option('--pattern', '-p', type=str, help='CBZ filename pattern (e.g., "c{:03d}.cbz" for c001.cbz, c002.cbz)')
 @click.option('--range', '-r', 'range_spec', type=str, help='Range of chapters/volumes (e.g., "1-10" or "1,3,5-8")')
 @click.option('--scan-info', '-s', type=str, help='Scan information to add to metadata')
+@click.option('--volume-as-number', is_flag=True, help='Map volume number to the Number tag (legacy behavior)')
 @click.option('--dry-run', is_flag=True, help='Show what would be processed without making changes')
 def embed(
-    cbz_dir: Path, manga_id: int, metadata_type: str, pattern: str, range_spec: str, scan_info: str, dry_run: bool
+    cbz_dir: Path,
+    manga_id: int,
+    metadata_type: str,
+    pattern: str,
+    range_spec: str,
+    scan_info: str,
+    volume_as_number: bool,
+    dry_run: bool,
 ):
     """Embed ComicInfo.xml metadata directly into CBZ files.
 
@@ -280,7 +294,9 @@ def embed(
             if metadata_type == 'chapters':
                 comic_info = generator.generate_comic_info(manga=manga, chapter=str(number), scan_info=scan_info)
             else:
-                comic_info = generator.generate_comic_info(manga=manga, volume=int(number), scan_info=scan_info)
+                comic_info = generator.generate_comic_info(
+                    manga=manga, volume=int(number), scan_info=scan_info, volume_as_number=volume_as_number
+                )
 
             if dry_run:
                 click.echo(f"📄 Would process: {filename}")

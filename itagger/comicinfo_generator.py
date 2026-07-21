@@ -71,6 +71,7 @@ class ComicInfoGenerator:
         volume: Optional[int] = None,
         chapter: Optional[str] = None,
         scan_info: Optional[str] = None,
+        volume_as_number: bool = False,
     ) -> ComicInfoData:
         """Create ComicInfoData from manga details."""
 
@@ -101,11 +102,16 @@ class ComicInfoGenerator:
         format_type = "Digital"  # Default for downloaded manga
         if manga.format == "ONE_SHOT":
             format_type = "One-Shot"
+            
+        # Determine number field
+        number_val = str(chapter) if chapter else None
+        if volume_as_number and volume:
+            number_val = str(volume)
 
         return ComicInfoData(
             title=title,
             series=manga.get_primary_title(),
-            number=str(volume) if volume else str(chapter) if chapter else None,
+            number=number_val,
             count=manga.volumes,
             volume=volume,
             summary=summary,
@@ -204,7 +210,8 @@ class ComicInfoGenerator:
         volume: Optional[int] = None,
         chapter: Optional[str] = None,
         scan_info: Optional[str] = None,
+        volume_as_number: bool = False,
     ) -> str:
         """Generate ComicInfo.xml content from manga details."""
-        comic_data = self.create_comic_info_data(manga, volume, chapter, scan_info)
+        comic_data = self.create_comic_info_data(manga, volume, chapter, scan_info, volume_as_number)
         return self.generate_comic_info_xml(comic_data)

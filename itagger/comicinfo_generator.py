@@ -102,7 +102,7 @@ class ComicInfoGenerator:
         format_type = "Digital"  # Default for downloaded manga
         if manga.format == "ONE_SHOT":
             format_type = "One-Shot"
-            
+
         # Determine number field
         number_val = str(chapter) if chapter else None
         if volume_as_number and volume:

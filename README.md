@@ -106,6 +106,9 @@ Example:
 
 ```bash
 itagger generate --volume 1 --scan-info "My Scanlation Group" 105778
+
+# If you need the Volume number to also populate the <Number> tag:
+itagger generate --volume 1 --volume-as-number 105778
 ```
 
 This command generates a `ComicInfo.xml` file for volume 1 of the manga with AniList ID `105778` (Chainsaw Man) and includes the specified [scanlation group](https://anansi-project.github.io/docs/comicinfo/documentation#scaninformation) in the metadata.
@@ -187,26 +190,26 @@ with open("ComicInfo.xml", "w", encoding="utf-8") as f:
 
 The tool maps AniList data to ComicInfo.xml fields according to the schema:
 
-| ComicInfo Field   | Source                       | Description                                         |
-| ----------------- | ---------------------------- | --------------------------------------------------- |
-| `Title`           | Manga title + volume/chapter | Full title including volume/chapter info            |
-| `Series`          | Primary title                | Series name (English preferred, fallback to Romaji) |
-| `Number`          | Volume/Chapter               | Volume or chapter number                            |
-| `Count`           | Volume count                 | Total volumes in series                             |
-| `Volume`          | Volume number                | Specific volume number                              |
-| `Summary`         | Description                  | Cleaned description without HTML                    |
-| `Year/Month/Day`  | Start date                   | Publication start date                              |
-| `Writer`          | Staff with "Story" role      | Authors/writers                                     |
-| `Penciller`       | Staff with "Art" role        | Artists                                             |
-| `Publisher`       | Studios                      | Publishing studios                                  |
-| `Genre`           | Genres                       | Comma-separated genres                              |
-| `Tags`            | Tags (non-spoiler)           | Comma-separated tags                                |
-| `Web`             | Site URL                     | AniList page URL                                    |
-| `LanguageISO`     | Country of origin            | Language code (ja, ko, zh, etc.)                    |
-| `Manga`           | Country + format             | Reading direction (YesAndRightToLeft for JP)        |
-| `Characters`      | Main characters              | Main character names                                |
-| `AgeRating`       | Tags + adult flag            | Age appropriateness rating                          |
-| `CommunityRating` | Average score                | Rating converted to 0-5 scale                       |
+| ComicInfo Field   | Source                       | Description                                                  |
+| ----------------- | ---------------------------- | ------------------------------------------------------------ |
+| `Title`           | Manga title + volume/chapter | Full title including volume/chapter info                     |
+| `Series`          | Primary title                | Series name (English preferred, fallback to Romaji)          |
+| `Number`          | Chapter                      | Chapter number (unless overridden with `--volume-as-number`) |
+| `Count`           | Volume count                 | Total volumes in series                                      |
+| `Volume`          | Volume number                | Specific volume number                                       |
+| `Summary`         | Description                  | Cleaned description without HTML                             |
+| `Year/Month/Day`  | Start date                   | Publication start date                                       |
+| `Writer`          | Staff with "Story" role      | Authors/writers                                              |
+| `Penciller`       | Staff with "Art" role        | Artists                                                      |
+| `Publisher`       | Studios                      | Publishing studios                                           |
+| `Genre`           | Genres                       | Comma-separated genres                                       |
+| `Tags`            | Tags (non-spoiler)           | Comma-separated tags                                         |
+| `Web`             | Site URL                     | AniList page URL                                             |
+| `LanguageISO`     | Country of origin            | Language code (ja, ko, zh, etc.)                             |
+| `Manga`           | Country + format             | Reading direction (YesAndRightToLeft for JP)                 |
+| `Characters`      | Main characters              | Main character names                                         |
+| `AgeRating`       | Tags + adult flag            | Age appropriateness rating                                   |
+| `CommunityRating` | Average score                | Rating converted to 0-5 scale                                |
 
 ### Example Output
 

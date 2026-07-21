@@ -114,6 +114,24 @@ Your current naming (`c001.cbz`, `c002.cbz`, etc.) works well. For optimal recog
 - ❌ Incorrect XML format (our tool prevents this)
 - ❌ Case sensitivity: must be exactly `ComicInfo.xml`
 
+## Volumes vs Chapters (The `<Number>` Tag)
+
+Because the `ComicInfo.xml` schema was originally designed for Western comic books, it relies on the `<Number>` tag to identify the specific **Issue** or **Chapter**.
+
+When you use `itagger` to generate metadata:
+
+- **Chapters (`--chapter` or `-t chapters`)**: `itagger` maps the chapter number directly to the `<Number>` tag and leaves `<Volume>` empty. This is exactly what Kavita and Komga expect for individual chapter files.
+- **Volumes (`--volume` or `-t volumes`)**: `itagger` maps the volume number to the `<Volume>` tag and leaves `<Number>` completely empty. This prevents readers like Kavita from incorrectly reading "Volume 5" as "Chapter 5".
+
+### Legacy / Override Behavior
+
+If your specific setup or obscure reading software requires the `<Number>` tag to be populated even for full volumes, you can use the `--volume-as-number` flag to override this standard behavior. This will copy the volume number into the `<Number>` tag:
+
+```bash
+# Example: Map Volume 1 to both <Volume>1</Volume> and <Number>1</Number>
+itagger embed /path/to/Elfen-Lied 30933 -t volumes --volume-as-number
+```
+
 ## Alternative: Volume-Based Structure
 
 If you prefer volume-based organization:
